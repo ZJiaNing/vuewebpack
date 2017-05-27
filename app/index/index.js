@@ -5,23 +5,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './components/App'
-import routes from './router/routes.js'
-// require('./assets/css/home')
+
+import Home from './components/Home'
+import routes from './router/routes'
 
 Vue.use(VueRouter);
 
 // 引入路由
-
 const router = new VueRouter({
   routes
 });
 
 Vue.config.debug = true;//开启错误提示
 
-
-
 new Vue({
-    el: '#app',
-    router,
-    render: h => h(App)
-});
+  router,
+  // ES6新语法，箭头函数
+  render: h => h(App)
+}).$mount('#app')

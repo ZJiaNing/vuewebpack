@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
+    <div>
       <navbar></navbar>
     </div>
     <div class="router-container">
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 import NavBar from './NavBar'
 export default {
   name: 'app',
@@ -25,7 +24,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-  @import "../assets/css/app"
-</style>

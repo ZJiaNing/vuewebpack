@@ -1,6 +1,8 @@
 // nodejs 中的path模块
 var path = require('path');
 // console.log(path);
+
+// 下面的这个插件是用来动态生成html文件，以及自动注入编译打包之后的js文件的
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -21,13 +23,12 @@ module.exports = {
         chunkFilename: '[id].[chunkhash].js'
     },
     resolve: {
-        extensions: [' ' ,'.css', '.js', '.vue'],    // 第一个单引号里面有一个空格的
+        extensions: [' ', 'css', '.scss', '.js', '.vue'],    // 第一个单引号里面有一个空格的
         alias: {
           'vue$': 'vue/dist/vue'
         }
     },
     module: {
-
         loaders: [
             // 使用vue-loader 加载 .vue 结尾的文件
             {
@@ -36,13 +37,18 @@ module.exports = {
             },
             {
               test: /\.css$/,
-              loader: ['style-loader', 'css-loader']
+              loader: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+              test: /\.scss$/,
+              loader: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
                   compact: false
+                  // presets: ['es2015']  // 应该把这个配置放到.babelrc文件中，虽然我还不知道这份文件存在的意义
                 }
             }
         ]
@@ -51,7 +57,21 @@ module.exports = {
         new HtmlWebpackPlugin({   // 这个插件用于帮你自动生成html文件，因为编译生成的bundle.js的hash值是会动态变的
             filename: '../index.html',
             template: path.resolve(__dirname, '../app/index/index.html'),
-            inject: 'body'
+            inject: true
         })
     ]
 }
+
+/*
+*  memo about how to config the basic webpack configuration
+*/
+
+/* how to config css
+  {
+     test: /\.css$/,
+     loader: ['style-loader', 'css-loader']
+   }
+
+   style-loader: 将所有的计算后的样式加入页面中
+   css-loader: 使你能够使用类似@import 和 url(…)的方法实现 require()的功能
+*/

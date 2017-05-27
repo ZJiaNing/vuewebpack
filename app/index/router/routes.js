@@ -12,3 +12,7 @@ const routes = [{
   path: '*',
   redirect: '/home'
 }]
+
+export default routes
+
+// 或者这么写 export {routes}

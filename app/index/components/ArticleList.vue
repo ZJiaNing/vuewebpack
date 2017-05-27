@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <h1>This is Article list page!</h1>
   </div>
 </template>

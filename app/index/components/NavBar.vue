@@ -8,16 +8,21 @@
         <li><router-link :to="{ path: '/Collection', activeClass: 'active'}">COLLECTION</router-link></li>
         <li><router-link :to="{ path: '/About', activeClass: 'active'}">ABOUT</router-link></li>
         <li><router-link :to="{ path: '/Cart', activeClass: 'active'}">CART</router-link></li> -->
-        <li>Home</li>
+        <li><h2>Home</h2></li>
         <li>Article</li>
         <li>Link</li>
         <li>About</li>
       </ul>
+      <div class="my-container">
+        <h1>Hello, world!</h1>
+        <h3>wahahahah</h3>
+      </div>
   </div>
 </template>
 
 <script>
   // nav 是vue的保留name，不允许使用
+  import '../assets/scss/fan'
   export default {
     name: 'navbar',
     data () {
@@ -46,8 +51,3 @@
     }
   }
 </script>
- <style lang="css">
-   ul li{
-     background-color: red;
-   }
- </style>
