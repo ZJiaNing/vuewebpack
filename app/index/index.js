@@ -4,12 +4,15 @@
 // 感情能不能再仔细一点呢？你连大小写都不分的吗？
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import App from './components/App'
 
 import Home from './components/Home'
 import routes from './router/routes'
 
+// 注册插件
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 // 引入路由
 const router = new VueRouter({

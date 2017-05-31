@@ -97,6 +97,10 @@
         & a{
           color: #ff8400;
         }
+
+        & a.router-link-active{
+          font-weight: bolder;
+        }
       }
 
       & li::before{
