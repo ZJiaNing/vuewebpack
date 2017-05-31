@@ -3,9 +3,24 @@
   height: 50px;
   background-color: grey;
   & h1{
-    color: blue
+    color: blue;
+    // background-image: url('../images/select-icon.png');
   }
   & h3{
-    color: pink;
+    color: pink
+    // background-image: url('../images/handphoto.jpg');
   }
 }
+
+// .my-container{
+//   width: 400px;
+//   height: 50px;
+//   background-color: grey;
+// }
+// .my-container h1{
+//   color: blue;
+//   font-size: 34px;
+// }
+// .my-container h3{
+//   color: pink;
+// }

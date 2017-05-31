@@ -50,6 +50,13 @@ module.exports = {
                   compact: false
                   // presets: ['es2015']  // 应该把这个配置放到.babelrc文件中，虽然我还不知道这份文件存在的意义
                 }
+            },
+            {
+              test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+              loader: "url-loader",
+              query: {
+                limit: 50000
+              }
             }
         ]
     },

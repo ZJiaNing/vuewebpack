@@ -8,6 +8,7 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 // 引入基本配置
 var config = require('./webpack.config');
+// var untils = require('./untils');
 
 // 因为这个时候的输出都是在内存中的，所以可以直接将路径设置成根目录
 // 当然你也可以视这样的'/my/'，这样的话，就是多了一层：“my文件夹"
@@ -20,6 +21,7 @@ var defaultConfig = merge(config, {
     loaders: [
       {
         test:/\.scss$/,
+        // include: '/app/index/',
         // loader: ExtractTextPlugin.extract({'style-loader!css-loader!sass-loader'})
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -66,3 +68,9 @@ Object.keys(defaultConfig.entry).forEach(function (name, i) {
 })
 
 module.exports = defaultConfig;
+
+// 问题：vue文件中，引入scss文件，初次编译的时候会报错，但是在hot-loadin的过程中，
+// 修改scss文件，再次编译，却不会再报错
+// 解决方案： 在loaders的地方加上了include的配置，，但是为什么呢？ 这个报错难道是因为
+// 缺失的访问路径导致的吗？  i don't know the reason of this problem.
+// 但是加入这个配置之后，css文件就没有办法抽取出来了，，，为什么呢？
