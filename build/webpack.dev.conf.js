@@ -1,7 +1,7 @@
 // 开发模式
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 将css单独打包
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 var webpack = require('webpack');
 // webpack-merge provides a merge function that concatenates arrays and merges objects creating a new object.
@@ -17,24 +17,11 @@ var defaultConfig = merge(config, {
   output: {
     publicPath: '/'
   },
-  module: {
-    loaders: [
-      {
-        test:/\.scss$/,
-        // include: '/app/index/',
-        // loader: ExtractTextPlugin.extract({'style-loader!css-loader!sass-loader'})
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
-    ]
-  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('css/[name].css'),
+    // new ExtractTextPlugin('css/[name].css'),
     new HtmlWebpackPlugin({
         title: 'New &&&& title',
         filename: 'app/index/index.html',

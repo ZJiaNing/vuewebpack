@@ -4,6 +4,7 @@ var path = require('path');
 
 // 下面的这个插件是用来动态生成html文件，以及自动注入编译打包之后的js文件的
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
@@ -30,14 +31,26 @@ module.exports = {
     },
     module: {
         loaders: [
-            // 使用vue-loader 加载 .vue 结尾的文件
+            // 使用vue-loader 加载 .vue 结尾的文件, 这个配置的这个option告诉vue-loader，我们
+            // 要将vue文件中的scss文件独立出去
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                use: [{
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            scss: ExtractTextPlugin.extract({
+                              fallback: 'style-loader',
+                              use: ['css-loader', 'sass-loader']
+                            })
+                        }
+                    }
+                }]
             },
             {
               test: /\.css$/,
-              loader: ['style-loader', 'css-loader', 'sass-loader']
+              loader: ['style-loader', 'css-loader']
+
             },
             {
               test: /\.scss$/,
@@ -61,6 +74,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new ExtractTextPlugin('css/[name].css'),
         new HtmlWebpackPlugin({   // 这个插件用于帮你自动生成html文件，因为编译生成的bundle.js的hash值是会动态变的
             filename: '../index.html',
             template: path.resolve(__dirname, '../app/index/index.html'),
