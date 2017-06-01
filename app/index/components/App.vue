@@ -4,7 +4,8 @@
     <div class="router-container">
       <router-view></router-view>
     </div>
-    <blogfooter></blogfooter>
+    <!-- 这边是通过属性的方法将父组件中的数据传递到子组件的 -->
+    <blogfooter :testData="testData"></blogfooter>
   </div>
 </template>
 
@@ -16,7 +17,8 @@ export default {
   data: function () {
     return {
       msg: 'Welcome to the Flower Shop',
-      hlw: 'hello, world!'
+      hlw: 'hello, world!',
+      testData: '456'
     }
   },
   components: {

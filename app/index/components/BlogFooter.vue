@@ -17,35 +17,20 @@
         c-1.627,1.274-2.723,1.966-3.268,2.718c-0.566,0.78-0.537,1.84,0.158,2.583C4.259,70.233,4.958,70.276,5.579,70.099z"></path>
       </svg> -->
     <p>Copyright © 2017 plaincoder</p>
+    <p>{{testData}}</p>
   </footer>
 </template>
 
 <script>
 export default {
   name: 'blogfooter',
+  props: ['testData'],  // 这个是从App.vue中传递过来的值，使用props获得（通过赋值给组件的同名属性值传递）
   data () {
     return {
       msg: 'This is the footer component!'
-      // 方法一的数据源
-      // items: [
-      //   {text: 'HOME', href: '/Home', active: true},
-      //   {text: 'COLLECTION', href: '/Collection', active: false},
-      //   {text: 'ABOUT', href: '/About', active: false},
-      //   {text: 'CONTACT', href: '/Contact', active: false}
-      // ]
     }
   },
   methods: {
-    // 方法一的active方法
-    // active: function (index) {
-    //   this.items.forEach(function (item, i) {
-    //     if (i === index) {
-    //       item.active = true
-    //     } else {
-    //       item.active = false
-    //     }
-    //   })
-    // }
   }
 }
 </script>
@@ -62,6 +47,10 @@ footer{
 
    & p{
     border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  & p:last-child{
+    display: none;
   }
 
   & svg{
