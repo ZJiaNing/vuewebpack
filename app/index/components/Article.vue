@@ -67,6 +67,13 @@ body{
     border: 1px solid grey;
     border-radius: 5px;
   }
+
+  & select{
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-left: 10px;
+  }
 }
 /* 两种方式的article list的展现样式 starts */
 /* list style and fold style */
