@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>固定表头方案尝试</title>
+    <style media="screen">
+      *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .container{
+        width: 1400px;
+        height: auto;
+        margin: 0 auto;
+      }
+      table{
+        width: 100%;
+        text-align: center;
+      }
+      .pro-fixed-table{
+        width: 100%;
+        padding: 10px;
+        background: #E5F1FF;
+        overflow: hidden;
+      }
+      .pro-fixed-table::after{
+        content: '';
+        clear: both;
+      }
+      .pro-fixed-table table tr{
+        height: 55px;
+        line-height: 55px;
+      }
+      .pro-table-head{
+        width: 198px;
+        float: left;
+      }
+      .pro-table-head table{
+        width: 198px;
+      }
+      .pro-table-body{
+        width: calc(100% - 198px);
+        float: left;
+      }
+      .pro-table-body .pro-table-scroll{
+        max-height: 300px;
+        overflow-x: scroll;
+      }
+      .pro-table-body table tr td{
+        min-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pro-fixed-table">
+        <div class="pro-table-head">
+          <table>
+            <tbody>
+              <tr>
+                <td width="89">序号</td>
+                <td width="109">项目名称</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>建元2017-2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pro-table-body">
+          <div class="pro-table-scroll">
+            <table>
+              <tbody>
+                <tr>
+                  <td>发起机构</td>
+                  <td>发行总额(亿元)</td>
+                  <td>当前余额(亿元)</td>
+                  <td>次级占比(%)</td>
+                  <td>监管机构</td>
+                  <td>基础资产</td>
+                  <td>发行起始日</td>
+                  <td>最新偿付日</td>
+                  <td>发行状态</td>
+                  <td>发行人</td>
+                  <td>主承销商</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+    </script>
+  </body>
+</html>
