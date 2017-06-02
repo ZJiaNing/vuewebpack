@@ -36,6 +36,14 @@
         width: 198px;
         float: left;
       }
+      .pro-table-scroll-head{
+        max-height: 283px;
+        overflow-y: scroll;
+      }
+      .pro-table-scroll-head::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+      }
       .pro-table-head table{
         width: 198px;
       }
@@ -43,7 +51,7 @@
         width: calc(100% - 198px);
         float: left;
       }
-      .pro-table-body .pro-table-scroll{
+      .pro-table-body .pro-table-scroll-body{
         max-height: 300px;
         overflow-x: scroll;
       }
@@ -56,53 +64,55 @@
     <div class="container">
       <div class="pro-fixed-table">
         <div class="pro-table-head">
-          <table>
-            <tbody>
-              <tr>
-                <td width="89">序号</td>
-                <td width="109">项目名称</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>建元2017-2</td>
-              </tr>
-            </tbody>
-          </table>
+          <div id="scrollHead" class="pro-table-scroll-head">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="89">序号</td>
+                  <td width="109">项目名称</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="pro-table-body">
-          <div class="pro-table-scroll">
+          <div id="scrollBody" class="pro-table-scroll-body">
             <table>
               <tbody>
                 <tr>
@@ -242,7 +252,19 @@
       </div>
     </div>
     <script type="text/javascript">
+    var scrollHead = document.getElementById('scrollHead');
+    var scrollBody = document.getElementById('scrollBody');
 
+    // 监听具体table中的滚动事件，使得另一个table也一起滚动
+    scrollBody.onscroll = function (e){
+      var sTop = scrollBody.scrollTop;
+      scrollHead.scrollTop = sTop;
+    }
+
+    scrollHead.onscroll = function (e){
+      var sTop = scrollHead.scrollTop;
+      scrollBody.scrollTop = sTop;
+    }
     </script>
   </body>
 </html>
