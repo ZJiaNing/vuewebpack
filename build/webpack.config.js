@@ -6,6 +6,9 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+// path： 是node的一个模块
+// __dirname: 是webpack的配置文件所在的目录路径！！！！！
+
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
     // entry: path.resolve(__dirname, '../app/index/index.js'),
@@ -13,6 +16,9 @@ module.exports = {
     entry: {
         home: [
             path.resolve(__dirname, '../app/index/index.js')
+        ],
+        article: [
+          path.resolve(__dirname, '../app/index/articleindex.js')
         ]
     },
     // 输出配置
@@ -20,7 +26,7 @@ module.exports = {
         // 输出路径是 myProject/output/static
         path: path.resolve(__dirname, '../output/static'),
         publicPath: 'static/',
-        filename: '[name].[hash].js',
+        filename: '[name].[hash:5].js',
         chunkFilename: '[id].[chunkhash].js'
     },
     resolve: {
