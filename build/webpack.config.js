@@ -85,6 +85,12 @@ module.exports = {
             filename: '../index.html',
             template: path.resolve(__dirname, '../app/index/index.html'),
             inject: true
+        }),
+        new HtmlWebpackPlugin({   // 这个插件用于帮你自动生成html文件，因为编译生成的bundle.js的hash值是会动态变的
+            filename: '../article.html',
+            template: path.resolve(__dirname, '../app/index/article.html'),
+            chunks: ['article'],
+            inject: true
         })
     ]
 }
