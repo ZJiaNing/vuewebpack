@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>我的关注</title>
+    <link rel="stylesheet" href="abscommon.css">
+    <style media="screen">
+    .container{
+      width: 1400px;
+      height: auto;
+      margin: 0 auto;
+    }
+    .div-flex{
+      display: flex;
+      flex-flow: row nowrap;
+    }
+    .mar-t-20{
+      margin-top:20px;
+    }
+    .attention-nav{
+
+    }
+    .attention-nav ul li{
+      display: inline-block;
+      border: 1px solid #262c35;
+      border-bottom-color: transparent;
+      width: 110px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+    }
+    .attention-nav ul li.selected{
+      border-top-color: #0856cd;
+    }
+    .main-tab{
+      margin-top: 20px;
+    }
+    .dim{
+      display: none;
+    }
+    .dim div.div-flex{
+      margin-bottom: 20px;
+    }
+    .dim-on{
+      display: block;
+    }
+    .title, .title-r{
+      font-size: 14px;
+      margin: 15px 0;
+    }
+    .title::before{
+      content: '';
+      width: 5px;
+      height: 18px;
+      background-color: #0856cd;
+      display: inline-block;
+      vertical-align: text-bottom;
+      margin-right: 10px;
+    }
+    .attention-table{
+      margin-right: 1%;
+    }
+    .attention-table, .attention-chart{
+       width: 49%;
+    }
+    .attention-table table tr{
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+    }
+    .attention-table table tbody tr.selected{
+      border: 1px solid #3d73ce;
+    }
+    .attention-table table tbody tr:nth-child(odd){
+      background-color: #212730;
+    }
+    .attention-table table tbody tr:nth-child(even){
+      background-color: #242c39;
+    }
+    .attention-table table.jump tr td:nth-child(1), .attention-table table.jump tr td:nth-child(2){
+      color: #3d73ce;
+    }
+    .attention-chart{
+
+    }
+    .attention-filter{
+      overflow: hidden;
+    }
+    .attention-filter p{
+      display: inline-block;
+      margin: 15px 0;
+    }
+    .attention-filter select{
+      width: 87px;
+    }
+    .chart-title{
+      height: 50px;
+      background-color: #2b3443;
+      line-height: 50px;
+    }
+    .chart-m{
+      width: 100%;
+      height: 350px;
+      background-color: pink;
+    }
+    .attention-fake-tb{
+      margin-top: 25px;
+    }
+    .attention-fake-tb .table-head{
+      background-color: #2b3443;
+    }
+    .attention-fake-tb .table-head table tr{
+      height: 50px;
+      line-height: 50px;
+    }
+    .attention-fake-tb .table-body{
+      max-height: 350px;
+      overflow-y: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container-wrap">
+      <!--the header starts  -->
+      <div class="fixed-header"></div>
+      <!--the header ends  -->
+      <div class="container fix-header-top">
+        <!-- the nav starts -->
+        <section class="attention-nav">
+          <ul>
+           <li>关注项目</li><li class="selected">债券详情</li>
+          </ul>
+        </section>
+        <!-- the nav ends -->
+        <div class="main-tab">
+          <!-- 关注项目 starts -->
+          <div class="dim dim-1">
+            <h1>This is container for attention list.</h1>
+          </div>
+          <!-- 关注项目 ends -->
+          <!-- 债券详情 starts -->
+          <div class="dim dim-2 dim-on">
+             <div class="div-flex">
+              <div class="attention-table">
+                <p class="title">付息兑付</p>
+                <div class="attention-fake-tb">
+                  <div class="table-head">
+                    <table>
+                      <thead>
+                        <th>证券代码</th>
+                        <th>证券简称</th>
+                        <th>下一付息日</th>
+                        <th>还本额</th>
+                        <th>剩余本金</th>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="table-body">
+                    <table class="jump">
+                      <tr class="selected">
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="attention-chart">
+                <div class="attention-filter">
+                  <label><input type="checkbox" name="" value="">全部本息流入</label>
+                  <label>
+                    <p>汇总时间<input type="text" class="date-box-new" value="2016-01-01" /></p>
+                    -
+                    <p><input type="text" class="date-box-new" value="2017-01-01" /></p>
+                  </label>
+                  <label>
+                    <p>汇总方式</p>
+                    <select class="select" name="">
+                      <option value="月">月</option>
+                      <option value="季度">季度</option>
+                    </select>
+                    <span>30日</span>
+                  </label>
+
+                </div>
+                <div class="chart-title">
+                  <span>时间</span>
+                  <span>偿付金额分布（万元）</span>
+                </div>
+                <div class="chart-m">
+
+                </div>
+              </div>
+             </div>
+             <div class="div-flex">
+              <div class="attention-table">
+                <p class="title">二级市场流动性</p>
+                <div class="attention-fake-tb">
+                  <div class="table-head">
+                    <table>
+                      <thead>
+                        <th>证券代码</th>
+                        <th>证券简称</th>
+                        <th>流通天数</th>
+                        <th>成交笔数</th>
+                        <th>成交总量</th>
+                        <th>成交总金额</th>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="table-body">
+                    <table class="jump">
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="attention-table">
+                <p class="title-r">历史成交明细</p>
+                <table class="">
+                  <tr>
+                    <td>序号</td>
+                    <td>债券代码</td>
+                    <td>债券名称</td>
+                    <td>日期</td>
+                    <td>最新净利润</td>
+                  </tr>
+                  <tr>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                  </tr>
+                  <tr>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                  </tr>
+                  <tr>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                  </tr>
+                  <tr>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                    <td>5488</td>
+                  </tr>
+                </table>
+              </div>
+             </div>
+             <div class="div-flex">
+              <div class="attention-table">
+                <p class="title">评级变动</p>
+                <div class="attention-fake-tb">
+                  <div class="table-head">
+                    <table>
+                      <thead>
+                        <th>证券代码</th>
+                        <th>证券简称</th>
+                        <th>下一付息日</th>
+                        <th>还本额</th>
+                        <th>剩余金额</th>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="table-body">
+                    <table class="jump">
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                      <tr>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                        <td>5488</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="attention-chart">
+                <div class="attention-filter">
+                  <p class="title-r">债项评级汇总</p>
+                  <p class="pull-right">
+                    <select class="select" name="">
+                      <option value="按金额">按金额</option>
+                      <option value="按数量">按数量</option>
+                    </select>
+                  </p>
+                </div>
+                <div class="chart-m">
+
+                </div>
+              </div>
+             </div>
+          </div>
+          <!-- 债券向详情 ends -->
+        </div>
+      </div>
+    </div>
+    <script>
+
+    </script>
+  </body>
+</html>
