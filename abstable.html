@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>固定表头方案尝试</title>
+    <style media="screen">
+      *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .container{
+        width: 1400px;
+        height: auto;
+        margin: 0 auto;
+      }
+      table{
+        width: 100%;
+        text-align: center;
+      }
+      .pro-fixed-table{
+        width: 100%;
+        padding: 10px;
+        background: #E5F1FF;
+        overflow: hidden;
+      }
+      .pro-fixed-table::after{
+        content: '';
+        clear: both;
+      }
+      .pro-fixed-table table tr{
+        height: 55px;
+        line-height: 55px;
+      }
+      .pro-table-head{
+        width: 198px;
+        float: left;
+      }
+
+/*::-webkit-scrollbar*/
+      .pro-table-scroll-head{
+        width: 0;
+        height: 0;
+      }
+      .pro-table-head table{
+        width: 198px;
+      }
+
+      .pro-table-body table tr td{
+        min-width: 130px;
+      }
+      /* one part */
+      .pro-table-head{
+
+      }
+      .pro-table-head .table-head{
+
+      }
+      .pro-table-head .table-body{
+        height: 543px;
+        overflow-y: scroll;
+      }
+      .pro-table-head .table-body::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+      }
+
+      /* one part*/
+      .pro-table-body{
+        width: calc(100% - 198px);
+        float: left;
+      }
+      .pro-table-body .table-head{
+        width: calc(100% - 17px);
+        overflow-x: scroll;
+      }
+      .pro-table-body .table-head::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+      }
+      .pro-table-body .table-body{
+        height: 560px;
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pro-fixed-table">
+        <div class="pro-table-head">
+          <div class="table-head">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="89">序号</td>
+                  <td width="109">项目名称</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="scrollLeftBody" class="table-body">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="89">1</td>
+                  <td width="109">今天你好吗？</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>今天我很好！</td>
+                </tr>
+                <tr>
+                  <td width="89">1</td>
+                  <td width="109">今天你好吗？</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>今天我很好！</td>
+                </tr>
+                <tr>
+                  <td width="89">1</td>
+                  <td width="109">今天你好吗？</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>建元2017-2</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>今天我很好！</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pro-table-body">
+          <div id="scrollRightHead" class="table-head">
+            <table>
+              <tbody>
+                <tr>
+                  <td>发起机构<i style="display:inline-block;width: 16px; height:16px; background-color:pink; cursor:pointer;"></i></td>
+                  <td>发行总额(亿元)</td>
+                  <td>当前余额(亿元)</td>
+                  <td>次级占比(%)</td>
+                  <td>监管机构</td>
+                  <td>基础资产</td>
+                  <td>发行起始日</td>
+                  <td>最新偿付日</td>
+                  <td>发行状态</td>
+                  <td>发行人</td>
+                  <td>主承销商</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="scrollRightBody" class="table-body">
+            <table>
+              <tbody>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>13</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    // 为什么我要采用这种方式去固定表头，因为， 我希望
+    // 左下方的内容区域
+    var scrollLeftBody = document.getElementById('scrollLeftBody');
+
+    var scrollRightBody = document.getElementById('scrollRightBody');
+    var scrollRightHead = document.getElementById('scrollRightHead');
+
+    // 监听具体table中的滚动事件，使得另一个table也一起滚动
+    scrollLeftBody.onscroll = function (e){
+      var sTop = scrollLeftBody.scrollTop;
+      scrollRightBody.scrollTop = sTop;
+    }
+
+    // 这边，我在想什么呢？ 这边会有什么问题么？ 后续测试的时候注意一下好了
+    scrollRightBody.onscroll = function (e){
+      var sTop = scrollRightBody.scrollTop;
+      var sLeft = scrollRightBody.scrollLeft;
+      scrollLeftBody.scrollTop = sTop;
+      scrollRightHead.scrollLeft = sLeft;
+    }
+
+
+
+    var relation = {
+      "home": "../app/index/index.js",
+      "article": "../app/index/articleindex.js"
+    }
+
+    function outputRelation(relation){
+
+      Object.keys(relation).forEach(function (name){
+        console.log(name);
+
+      });
+    }
+
+    outputRelation(relation);
+    </script>
+  </body>
+</html>
