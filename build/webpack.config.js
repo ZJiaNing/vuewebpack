@@ -1,26 +1,17 @@
-// nodejs 中的path模块
-var path = require('path');
-// console.log(path);
-
-// 下面的这个插件是用来动态生成html文件，以及自动注入编译打包之后的js文件的
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 // path： 是node的一个模块
 // __dirname: 是webpack的配置文件所在的目录路径！！！！！
+var path = require('path');
+// console.log(path);
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+// 引入工具函数
+var untils = require('./untils');
 
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
     // entry: path.resolve(__dirname, '../app/index/index.js'),
     // 使用热加载
-    entry: {
-        home: [
-            path.resolve(__dirname, '../app/index/index.js')
-        ],
-        article: [
-          path.resolve(__dirname, '../app/index/articleindex.js')
-        ]
-    },
+    entry: untils.multiEntry(untils.multiDepand),
     // 输出配置
     output: {
         // 输出路径是 myProject/output/static
@@ -78,22 +69,9 @@ module.exports = {
               }
             }
         ]
-    },
-    plugins: [
-        new ExtractTextPlugin('css/[name].css'),
-        new HtmlWebpackPlugin({   // 这个插件用于帮你自动生成html文件，因为编译生成的bundle.js的hash值是会动态变的
-            filename: '../index.html',
-            template: path.resolve(__dirname, '../app/index/index.html'),
-            inject: true
-        }),
-        new HtmlWebpackPlugin({   // 这个插件用于帮你自动生成html文件，因为编译生成的bundle.js的hash值是会动态变的
-            filename: '../article.html',
-            template: path.resolve(__dirname, '../app/index/article.html'),
-            chunks: ['article'],
-            inject: true
-        })
-    ]
+    }
 }
+
 
 /*
 *  memo about how to config the basic webpack configuration
