@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>固定表头方案尝试</title>
+    <!-- <link rel="stylesheet" href="product-list.css"> -->
+    <style media="screen">
+      *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .container{
+        width: 1400px;
+        height: auto;
+        margin: 0 auto;
+      }
+      table{
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+      }
+      ul{
+        list-style: none;
+      }
+      .pro-fixed-table{
+        width: 100%;
+        padding: 10px;
+        background: #E5F1FF;
+        overflow: hidden;
+      }
+      .pro-fixed-table::after{
+        content: '';
+        clear: both;
+      }
+      .pro-fixed-table table tr{
+        height: 55px;
+        line-height: 55px;
+      }
+      .pro-table-head{
+        width: 198px;
+        float: left;
+      }
+
+/*::-webkit-scrollbar*/
+      .pro-table-scroll-head{
+        width: 0;
+        height: 0;
+      }
+      .pro-table-head table{
+        width: 198px;
+      }
+
+      .pro-table-body table tr td{
+        min-width: 130px;
+      }
+      /* one part */
+      .pro-table-head{
+
+      }
+      .pro-table-head .table-head{
+
+      }
+      .pro-table-head .table-body{
+        height: 543px;
+        overflow-y: scroll;
+      }
+      .pro-table-head .table-body::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+      }
+
+      /* one part*/
+      .pro-table-body{
+        width: calc(100% - 198px);
+        float: left;
+      }
+      .pro-table-body .table-head{
+        width: calc(100% - 17px);
+        overflow-x: scroll;
+      }
+      .pro-table-body .table-head::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+      }
+      .pro-table-body .table-body{
+        height: 560px;
+        overflow-y: scroll;
+      }
+      /* 外部的容器 */
+      .abs-excel-table{
+        position: relative;
+      }
+      .excel-filter{
+        position: fixed;
+        width: 200px;
+        height: auto;
+        background-color: #1d222a;
+        border: 1px solid #333a44;
+        /*top: 50%;
+        left: 50%;
+        margin-top: -290px;
+        margin-left: -100px;*/
+        color: #fefefe;
+        border-radius: 4px;
+      }
+      .excel-filter p{
+        height: 30px;
+        line-height: 30px;
+        text-indent: 15px;
+        cursor: pointer;
+      }
+      .excel-filter p.sort-condi.selected, .excel-filter .sort-condi:hover{
+        background-color: #242c39;
+      }
+
+      /* the select  */
+      .excel-filter .select-ul {
+        width: 100%;
+      	background-color:#1d222a;
+        padding: 0 10px;
+      	border-radius:3px;
+      	z-index:11;
+        color: #fff;
+        font-size: 13px;
+        font-family: "Microsoft YaHei";
+      }
+      .excel-filter .select-ul input.filter {
+      	border:0;
+      	outline:0;
+      	background-color:#2b3443;
+      	height:22px;
+      	width: 100%;
+        margin-top:15px;
+      	color:#fff;
+      	text-indent:.5em
+      }
+      .excel-filter .select-ul ul {
+      	max-height:164px;
+        margin: 15px 0;
+      	overflow-y:auto;
+      	width: 100%;
+      }
+      .excel-filter .select-ul li {
+      	height:25px;
+      	line-height:25px;
+      	padding:0 0 0 10px
+      }
+      .excel-filter .select-ul li:hover {
+      	background-color:#0048b9
+      }
+      .excel-filter .select-ul li>label {
+      	display:block;
+      	text-overflow:ellipsis;
+      	overflow:hidden;
+      	white-space:nowrap;
+      	cursor:pointer
+      }
+      .excel-filter .select-ul li input {
+      	vertical-align:middle;
+      	display:none
+      }
+      .excel-filter .select-ul li input[type=checkbox] +i {
+      	width:13px;
+      	height:13px;
+      	display:inline-block;
+      	margin-right:5px;
+      	background-repeat:no-repeat;
+      	background-size:contain;
+      	background-image:url(icon-uncheck.png)
+      }
+      .excel-filter .select-ul li input[type=checkbox]:checked +i {
+      	background-image:url(icon-check.png)
+      }
+      .excel-filter .select-ul ul::-webkit-scrollbar, .excel-filter .sub-filter::-webkit-scrollbar{
+      	width:4px;
+      	height:8px
+      }
+      .excel-filter .select-ul ul::-webkit-scrollbar-thumb , .excel-filter .sub-filter::-webkit-scrollbar-thumb{
+      	width:8px;
+      	height:8px;
+      	background-color:#343a43
+      }
+      .excel-filter .sub-filter{
+        display: none;
+        position: absolute;
+        max-height: 200px;
+        overflow-y: scroll;
+        background-color: #1d222a;
+        top: 60px;
+        left: 199px;
+        border-radius: 4px;
+        border: 1px solid #333a44;
+        border-left-width: 0;
+      }
+      .excel-filter .sub-filter ul{
+
+      }
+      .excel-filter .sub-filter ul li{
+        height: 30px;
+        line-height: 30px;
+        text-indent: 15px;
+        cursor: pointer;
+      }
+      .excel-filter .sub-filter ul li.selected, .excel-filter .sub-filter ul li:hover{
+        background-color: #242c39;
+      }
+      .excel-filter-wrap{
+        /*display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);*/
+      }
+      .w-100{
+        width: 100px;
+      }
+      .w-168{
+        width: 168px;
+      }
+      .icon{
+
+      }
+      .icon-morecondi{
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('3-_Right.png');
+        float: right;
+      }
+      .show-menu{
+        display:inline-block;
+        width: 16px;
+        height:16px;
+        background-color:pink;
+        cursor:pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="abs-excel-table">
+        <!-- the fixed table starts -->
+        <div class="pro-fixed-table">
+          <div class="pro-table-head">
+            <div class="table-head">
+              <table>
+                <tbody>
+                  <tr>
+                    <td width="89">序号</td>
+                    <td width="109">项目名称</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="scrollLeftBody" class="table-body">
+              <table>
+                <tbody>
+                  <tr>
+                    <td width="89">1</td>
+                    <td width="109">今天你好吗？</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>今天我很好！</td>
+                  </tr>
+                  <tr>
+                    <td width="89">1</td>
+                    <td width="109">今天你好吗？</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>今天我很好！</td>
+                  </tr>
+                  <tr>
+                    <td width="89">1</td>
+                    <td width="109">今天你好吗？</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>建元2017-2</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>今天我很好！</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pro-table-body">
+            <div id="scrollRightHead" class="table-head">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>发起机构<i class="show-menu" data-cate="FQJG"></i></td>
+                    <td>发行总额(亿元)<i class="show-menu" data-cate="FXZE"></i></td>
+                    <td>当前余额(亿元)<i class="show-menu" data-cate="DQYE"></i></td>
+                    <td>次级占比(%)</td>
+                    <td>监管机构</td>
+                    <td>基础资产</td>
+                    <td>发行起始日</td>
+                    <td>最新偿付日</td>
+                    <td>发行状态</td>
+                    <td>发行人</td>
+                    <td>主承销商<i class="show-menu" data-cate="ZCX"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="scrollRightBody" class="table-body">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>13</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- the fixed table ends -->
+        <!-- one left menu starts -->
+        <!-- excel-filter-wrap:用于存放生成的excel-filter容器 -->
+        <div class="excel-filter-wrap">
+        </div>
+        <!-- one left menu ends -->
+      </div>
+    </div>
+
+    <script src="jquery-3.2.1.js"></script>
+    <script src="ExcelFilter.js"></script>
+    <script type="text/javascript">
+    // 为什么我要采用这种方式去固定表头，因为， 我希望
+    // 左下方的内容区域
+    var scrollLeftBody = document.getElementById('scrollLeftBody');
+
+    var scrollRightBody = document.getElementById('scrollRightBody');
+    var scrollRightHead = document.getElementById('scrollRightHead');
+
+    //==========================================================================
+
+    // 监听具体table中的滚动事件，使得另一个table也一起滚动
+    scrollLeftBody.onscroll = function (e){
+      var sTop = scrollLeftBody.scrollTop;
+      scrollRightBody.scrollTop = sTop;
+    }
+
+    // 这边，我在想什么呢？ 这边会有什么问题么？ 后续测试的时候注意一下好了
+    scrollRightBody.onscroll = function (e){
+      var sTop = scrollRightBody.scrollTop;
+      var sLeft = scrollRightBody.scrollLeft;
+      scrollLeftBody.scrollTop = sTop;
+      scrollRightHead.scrollLeft = sLeft;
+    }
+
+    //==========================================================================
+
+    // 阻止掉默认的右键事件
+    document.oncontextmenu = function(e){
+         e.preventDefault();
+     };
+
+    function addMenuButtonEvent(){
+      // 获取menu bu
+      var menuButtons = document.querySelectorAll('.show-menu');
+      var menuLen  = menuButtons.length || 0;
+      console.log('the current menu buttons: ' + menuLen);
+      if (menuLen > 0){
+        for (var i=0;i<menuLen;i++){
+          menuButtons[i].addEventListener('mousedown', judgeEventType);
+        }
+      }
+    }
+
+    // 修改事件监听方式
+
+    function judgeEventType(e){
+      var button = e.button;
+      if (button == 0){
+        // 左键
+        showLeftContext(e);
+      }
+      else if (button == 2){
+        // 右键
+        showRightContext();
+      }
+
+    }
+
+    function showLeftContext(e){
+      console.log('you click the left button');
+      generateExcelFilter(e);
+    }
+
+    function showRightContext(){
+      console.log('you click the right button');
+    }
+
+
+    addMenuButtonEvent();
+
+    //==========================================================================
+    // 生成过滤
+    function generateExcelFilter(e){
+      var ele = $(e.target);
+      var category = ele.attr('data-cate');
+      var pageX = e.pageX - 195;
+      var pageY = e.pageY + 15;
+      console.log(pageX + "-----" + pageY);
+
+      ele.ExcelFilter({category: category, left: pageX, top: pageY});
+    }
+
+    // generateABSelects();
+
+    //==========================================================================
+    // 点击“条件筛选”，显示右侧sub-filter
+    // var moreCondi = document.getElementById('moreCondi');
+    // var subFilter = moreCondi.nextElementSibling;
+    // moreCondi.addEventListener('click', function (e){
+    //    subFilter.style.display = "block";
+    // });
+
+    // $('body').on('click', function (e){
+    //   var ele = $(e.target);
+    //
+    //   // 如果是依赖下述的话，那么对按钮的点击面积是有点要求的——这个你必须先考虑到——再想想看有什么别的办法没有~~~
+    //   if (ele.hasClass('show-menu') || ele.offsetParent().hasClass('excel-filter')){
+    //     return;
+    //   }
+    //   else{
+    //     $('.excel-filter').hide();
+    //   }
+    // });
+
+    </script>
+  </body>
+</html>
